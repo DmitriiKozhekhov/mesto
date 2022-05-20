@@ -10,9 +10,9 @@
   }
 }
 /* можно и убрать */
-@media screen and (max-width: 819px) {
+@media screen and (max-width: 767px) {
   .content {
     width: calc(100% - 2 * 19px);
   }
 }
-/* 767 */
+/* 767? */

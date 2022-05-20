@@ -8,7 +8,7 @@
   padding-bottom: 67px;
 }
 /* может, отменить */
-@media screen and (max-width: 819px) {
+@media screen and (max-width: 767px) {
   .elements {
     padding-bottom: 50px;
     row-gap: 21px;

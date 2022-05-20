@@ -2,6 +2,7 @@
 let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.form__close-button');
 let popupOpenButton = document.querySelector('.profile__edit-button');
+// введение popup, close-button, edit-button
 
 //test
 // console.log(popup);

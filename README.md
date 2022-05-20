@@ -1,5 +1,8 @@
-Проект "Mesto".
+Проект "Mesto"
+
 Ссылка на github-pages:
+ https://dmitriikozhekhov.github.io/mesto/index.html
+
 Технологии, ипользуемые в проекте:
 1. Грид-вёрстка
 2. Флекс-вёрстка
