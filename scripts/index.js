@@ -9,7 +9,6 @@ let popupOpenButton = document.querySelector('.profile__edit-button');
 // console.log(popupCloseButton);
 // console.log(popupOpenButton);
 
-// введение popup, close-button, edit-button
 //введение переменных текстовых полей
 let name1 = document.querySelector('.profile__name');
 let job = document.querySelector('.profile__job');
@@ -22,7 +21,6 @@ let jobInput = document.querySelector('.form__input_info_job');
 // console.log(job);
 // console.log(nameInput);
 // console.log(jobInput);
-
 
 //функция открытия popup//
 function openPopup() {
