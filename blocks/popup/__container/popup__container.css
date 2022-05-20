@@ -1,0 +1,5 @@
+.popup__container {
+  display: flex;
+  height: min-content;
+  width: min-content;
+}

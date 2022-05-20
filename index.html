@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pages/index.css">
+    <title>Место</title>
+</head>
+<body class="page">
+  <header class="header">
+    <div class="header__logo"></div>
+  </header>
+
+  <main class="content">
+    <section class="profile">
+      <img class="profile__avatar" src="./images/Kusto.jpg" alt="Портрет Жак-Ив Кусто">
+      <div class="profile__info">
+        <div class="profile__box">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button class="profile__edit-button" aria-label="Редактирование" type="button"></button>
+        </div>
+        <p class="profile__job">Исследователь океана</p>
+      </div>
+      <button class="profile__add-button" aria-label="Добавление новой карточки" type="button"></button>
+    </section>
+    <section class="elements">
+      <article class="element">
+        <img class="element__image" src="./images/karachevsc.jpg" alt="Карачаевск">
+        <h2 class="element__title">Карачаевск</h2>
+        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
+        <h2 class="element__title">Гора Эльбрус</h2>
+        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
+        <h2 class="element__title">Домбай</h2>
+        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
+        <h2 class="element__title">Гора Эльбрус</h2>
+        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
+        <h2 class="element__title">Домбай</h2>
+        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+      </article>
+      <article class="element">
+        <img class="element__image" src="./images/elbrus.jpg" alt="Карачаево-Черкесия">
+        <h2 class="element__title">Карачаево-Черкесия</h2>
+        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+      </article>
+    </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <form class="form" name="form">
+          <button class="form__close-button" aria-label="Закрытие формы" type="button"></button>
+          <h2 class="form__title">Редактировать профиль</h2>
+          <input type="text" class="form__input form__input_info_name" placeholder ="имя" required/>
+          <input type="text" class="form__input form__input_info_job"  placeholder="профессия" required/>
+          <button class="form__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>
