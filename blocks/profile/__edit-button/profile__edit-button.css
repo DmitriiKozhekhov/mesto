@@ -9,7 +9,7 @@
   align-self: center;
   cursor: pointer;
   padding:0;
-  margin: 7px 0 0 18px;
+  margin: 6px 0 0 19px;
 }
 .profile__edit-button:hover {
   opacity: 0.5;
@@ -17,9 +17,9 @@
  @media screen and (max-width: 767px) {
   .profile__edit-button {
     align-self: end;
-    width: 18px;
-    height: 18px;
-    margin: 0 0 7px 15.25px;
-    min-width: 18px;
+    width: 16px;
+    height: 16px;
+    margin: 0 0 7px 11px;
+    min-width: 16px;
   }
 }

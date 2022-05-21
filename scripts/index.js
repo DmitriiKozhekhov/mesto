@@ -1,7 +1,7 @@
-// введение popup, close-button, edit-button
-let popup = document.querySelector('.popup');
-let popupCloseButton = document.querySelector('.form__close-button');
-let popupOpenButton = document.querySelector('.profile__edit-button');
+// введение переменных(конст) popup, close-button, edit-button
+const popup = document.querySelector('.popup');
+const popupCloseButton = document.querySelector('.form__close-button');
+const popupOpenButton = document.querySelector('.profile__edit-button');
 // введение popup, close-button, edit-button
 
 //test
@@ -10,7 +10,7 @@ let popupOpenButton = document.querySelector('.profile__edit-button');
 // console.log(popupOpenButton);
 
 //введение переменных текстовых полей
-let name1 = document.querySelector('.profile__name');
+let name = document.querySelector('.profile__name');
 let job = document.querySelector('.profile__job');
 let nameInput = document.querySelector('.form__input_info_name');
 let jobInput = document.querySelector('.form__input_info_job');
@@ -25,26 +25,29 @@ let jobInput = document.querySelector('.form__input_info_job');
 //функция открытия popup//
 function openPopup() {
   popup.classList.add('popup_open');
-  nameInput.value = name1.textContent;
+  nameInput.value = name.textContent;
   jobInput.value = job.textContent;
 };
-popupOpenButton.addEventListener('click', openPopup);
 //функция открытия popup
 
 //функция закрытия popup
 function closePopup() {
   popup.classList.remove('popup_open');
 };
-popupCloseButton.addEventListener('click', closePopup);
 //функция закрытия popup
 
 //функция сохранения popup
 let formElement = document.querySelector('.form');
- function formSubmitHandler(evt) {
-   evt.preventDefault();
- name1.textContent = nameInput.value;
- job.textContent = jobInput.value;
- popup.classList.remove('popup_open');
+  function formSubmitHandler(evt) {
+  evt.preventDefault();
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
+  closePopup();
  };
-formElement.addEventListener('submit', formSubmitHandler);
 //функция сохранения popup
+
+//соотвествующие сулшатели событий
+popupOpenButton.addEventListener('click', openPopup);
+popupCloseButton.addEventListener('click', closePopup);
+formElement.addEventListener('submit', formSubmitHandler);
+//соотвествующие сулшатели событий
