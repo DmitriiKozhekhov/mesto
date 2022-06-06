@@ -3,6 +3,7 @@
   display: grid;
   grid-template: 281px min-content / 1fr;
   color: #000;
+  position: relative;
   background-color: #fff;
   border-radius: 10px;
 }

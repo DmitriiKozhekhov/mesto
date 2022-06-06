@@ -1,13 +1,12 @@
 .form {
   display: grid;
-  position: relative;
+  border-radius: 10px;
   grid-template: repeat(4, min-content) / 1fr;
   box-sizing: border-box;
   padding: 34px 36px 37px;
   background-color: #fff;
-  border-radius: 10px;
 }
-/* может убрать */
+
 @media screen and (max-width: 767px) {
   .form {
     padding: 25px 22px 25px;

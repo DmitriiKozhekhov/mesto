@@ -11,7 +11,6 @@
   <header class="header">
     <div class="header__logo"></div>
   </header>
-
   <main class="content">
     <section class="profile">
       <img class="profile__avatar" src="./images/Kusto.jpg" alt="Портрет Жак-Ив Кусто">
@@ -23,54 +22,54 @@
         <p class="profile__job">Исследователь океана</p>
       </div>
       <button class="profile__add-button" aria-label="Добавление новой карточки" type="button"></button>
-    </section>
-    <section class="elements">
-      <article class="element">
-        <img class="element__image" src="./images/karachevsc.jpg" alt="Карачаевск">
-        <h2 class="element__title">Карачаевск</h2>
-        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/elbrus.jpg" alt="Гора Эльбрус">
-        <h2 class="element__title">Гора Эльбрус</h2>
-        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/dombay.jpg" alt="Домбай">
-        <h2 class="element__title">Домбай</h2>
-        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
-      </article>
-      <article class="element">
-        <img class="element__image" src="./images/elbrus.jpg" alt="Карачаево-Черкесия">
-        <h2 class="element__title">Карачаево-Черкесия</h2>
-        <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
-      </article>
-    </section>
+     </section>
+     <section class="elements">
+        <template id ="card">
+          <article class="element">
+           <img class="element__image" alt="изображение">
+           <button class="element__remove" aria-label="Удалить изображение" type ="button"></button>
+           <h2 class = "element__title"></h2>
+           <button class="element__like-button" aria-label="Мне нравится" type="button"></button>
+          </article>
+        </template>
+      </section>
     </main>
     <footer class="footer">
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
-    <div class="popup">
+    <div class="popup popup_to_edit-name">
       <div class="popup__container">
+        <button class="popup__close-button" aria-label="Закрытие формы" type="button"></button>
         <form class="form" name="form">
-          <button class="form__close-button" aria-label="Закрытие формы" type="button"></button>
           <h2 class="form__title">Редактировать профиль</h2>
           <input type="text" name = "fullname" class="form__input form__input_info_name" placeholder ="имя" required/>
           <input type="text" name = "job" class="form__input form__input_info_job"  placeholder="профессия" required/>
           <button class="form__save-button" type="submit">Сохранить</button>
         </form>
-      </div>
+     </div>
     </div>
+    <div class="popup popup_to_create-card">
+      <div class="popup__container">
+        <button class="popup__close-button" aria-label="Закрытие формы" type="button"></button>
+        <form class="form" name="form">
+          <h2 class="form__title">Новое место</h2>
+          <input type="text" name = "fullname" class="form__input form__input_info_card-name" placeholder ="Название" required/>
+          <input type="text" name = "link" class="form__input form__input_info_image-link"  placeholder="Ссылка на изображение" required/>
+          <button class="form__save-button" type="submit">Сохранить</button>
+        </form>
+      </div>
+   </div>
+   <div class="popup popup_to_image-strech">
+    <div class="popup__container">
+      <button class="popup__close-button" aria-label="Закрытие формы" type="button"></button>
+      <form class="form form_to_image-strech">
+        <figure class="form__image-box">
+          <img class="form__image"  alt="изображение">
+          <figcaption class="form__image-title"></figcaption>
+        </figure>
+      </form>
+    </div>
+  </div>
     <script src="./scripts/index.js"></script>
 </body>
 </html>
