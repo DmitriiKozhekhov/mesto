@@ -62,8 +62,10 @@
 @import url(../blocks/form/__save-button/form__save-button.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/_to/form_to_image-strech.css);
-@import url(../blocks/form/__image-title/form__image-title.css);
-@import url(../blocks/form/__image/form__image.css);
-@import url(../blocks/form/__image-box/form__image-box.css);
 /*form*/
 
+/* show */
+@import url(../blocks/show/show.css);
+@import url(../blocks/show/__image-title/show__image-title.css);
+@import url(../blocks/show/__image/show__image.css);
+/* show */
