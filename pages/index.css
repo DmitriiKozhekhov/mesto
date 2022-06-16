@@ -54,14 +54,19 @@
 @import url(../blocks/popup/_open/popup_open.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
 @import url(../blocks/popup/_to/popup_to_image-strech.css);
+@import url(../blocks/popup/__overlay/popup__overlay.css);
 /*popup*/
 
 /*form*/
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__save-button/form__save-button.css);
+@import url(../blocks/form/__save-button/_off/form__save-button_off.css);
 @import url(../blocks/form/__title/form__title.css);
 @import url(../blocks/form/_to/form_to_image-strech.css);
+@import url(../blocks/form/__input/_ineffective/form__input_ineffective.css);
+@import url(../blocks/form/__invalid-message/form__invalid-message.css);
+@import url(../blocks/form/__invalid-message/_active/form__invalid-message_active.css);
 /*form*/
 
 /* show */

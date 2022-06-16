@@ -16,4 +16,5 @@
 .element__remove:hover {
   transition: .6s;
   opacity: 0.4;
+  /* cursor: pointer; */
 }

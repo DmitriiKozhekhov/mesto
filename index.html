@@ -38,28 +38,35 @@
       <p class="footer__copyright">© 2022 Mesto Russia</p>
     </footer>
     <div class="popup popup_to_edit-name">
+      <div class="popup__overlay"></div>
       <div class="popup__container">
         <button class="popup__close-button" aria-label="Закрытие формы" type="button"></button>
-        <form class="form" name="form">
+        <form  class="form" name="form" novalidate>
           <h2 class="form__title">Редактировать профиль</h2>
-          <input type="text" name = "fullname" class="form__input form__input_info_name" placeholder ="имя" required/>
-          <input type="text" name = "job" class="form__input form__input_info_job"  placeholder="профессия" required/>
+          <input type="text" name = "fullname" class="form__input form__input_info_name" placeholder ="Ваше имя" required  minlength="2" maxlength="40" id="name-input">
+          <span class="form__invalid-message name-input-error"></span>
+          <input type="text" name = "job" class="form__input form__input_info_job"  placeholder="Ваш род деятельности"  minlength="2" maxlength="200" id="job-input" required>
+          <span class="form__invalid-message job-input-error"></span>
           <button class="form__save-button" type="submit">Сохранить</button>
         </form>
      </div>
     </div>
     <div class="popup popup_to_create-card">
+      <div class="popup__overlay"></div>
       <div class="popup__container">
-        <button class="popup__close-button" aria-label="Закрытие формы" type="button"></button>
-        <form class="form" name="form">
+        <button class="popup__close-button" aria-label="Закрыть окно" type="button"></button>
+        <form class="form" name="form" novalidate>
           <h2 class="form__title">Новое место</h2>
-          <input type="text" name = "fullname" class="form__input form__input_info_card-name" placeholder ="Название" required/>
-          <input type="url" name = "link" class="form__input form__input_info_image-link"  placeholder="Ссылка на изображение" required/>
-          <button class="form__save-button" type="submit">Сохранить</button>
+          <input type="text" name = "fullname" class="form__input form__input_info_card-name" placeholder ="Название" id="title-input"  minlength="2" maxlength="30" required>
+          <span class="form__invalid-message title-input-error">Вы пропустили это поле</span>
+          <input type="url" name = "link" class="form__input form__input_info_image-link"  placeholder="Ссылка на картинку" id="link-input" required>
+          <span class="form__invalid-message link-input-error">Введите адрес сайта</span>
+          <button id="card-button" class="form__save-button" type="submit">Создать</button>
         </form>
       </div>
    </div>
    <div class="popup popup_to_image-strech">
+    <div class="popup__overlay"></div>
     <div class="popup__container">
       <button class="popup__close-button" aria-label="Закрытие попапа" type="button"></button>
       <div class="show">
@@ -70,5 +77,6 @@
   </div>
     <script src="./scripts/originalCards.js"></script>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
 </body>
 </html>

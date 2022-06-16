@@ -7,7 +7,6 @@ const popupToScrechImage = document.querySelector('.popup_to_image-strech');
 const profileEditOpenButton = document.querySelector('.profile__edit-button');
 const cardAddOpenButton = document.querySelector('.profile__add-button');
 //переменные для функционала popup: редактирования(вызова), закрытия, добавления карт и другое
-
 //form
 const formToAddCard = popupToAddCard.querySelector('.form');
 const formToEditName = popupToEditName.querySelector('.form');
@@ -16,34 +15,39 @@ const formInputTitle = formToAddCard.querySelector('.form__input_info_card-name'
 const formImage = document.querySelector('.show__image');
 const formImageTitle = document.querySelector('.show__image-title');
 //form
-
 //ввод данных
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const profileNameInput = document.querySelector('.form__input_info_name');
 const profileJobInput = document.querySelector('.form__input_info_job');
-//ввод данных
-
+//ввод данны
 //хранение шаблона
 const cardTemplate = document.querySelector('#card').content;
 const cardElements = document.querySelector('.elements')
 //хранение шаблона
-
 //введение переменных
 
 //объявление функций
-
-//функция открытия popup
-function openPopup(popup) {
-  popup.classList.add('popup_open');
+// функция заркрытия popup по esc
+const closeByEsc = (evt) => {
+  if (evt.key === 'Escape') {
+    const popupOpenedState = document.querySelector('.popup_open');
+    closePopup(popupOpenedState);
+  }
 };
-//функция открытия popup
+const closePopup = (item) => {
+  item.classList.remove('popup_open');
+  document.removeEventListener('keydown', closeByEsc);
+}
+// функция заркрытия popup по esc
 
-//функция закрытия popup
-function closePopup(popup) {
-  popup.classList.remove('popup_open');
-};
-//функция закрытия popup
+//закрытие по overlay
+const openPopup = (item) => {
+  item.classList.add('popup_open');
+  document.addEventListener('keydown', closeByEsc);
+  item.querySelector('.popup__overlay').addEventListener('click', () => closePopup(item));
+}
+//закрытие по overlay
 
 //функция открытия popup для редакции автора
 function openProfilePopup() {
@@ -98,18 +102,16 @@ function strechImage(element) {
   openPopup(popupToScrechImage);
 };
 //функция масшатабирования картинки при клике (открытие)
-
 function performCard (elementPlace, element) {
   elementPlace.prepend(element);
 };
-
 //стрелочная функция добавление массива карточек
 originalCards.forEach((item) => {
   const element = getCardElement(item.link, item.name);
   performCard (cardElements, element);
 });
 //стрелочная функция добавление массива карточек
-//объявление функций
+
 
 //функция подтверждения
 function submitGetCardElement(evt) {
