@@ -1,10 +1,5 @@
 //введение переменных
 
-// массив попапов
-const popups = document.querySelectorAll('.popup');
-// массив попапов
-
-
 //переменные для функционала popup: редактирования(вызова), закрытия, добавления карт и другое
 
 const popupToAddCard = document.querySelector('.popup_to_create-card');
@@ -44,24 +39,18 @@ const closeByEsc = (evt) => {
 };
 const closePopup = (item) => {
   item.classList.remove('popup_open');
-  // document.removeEventListener('keydown', closeByEsc);
+  document.removeEventListener('keydown', closeByEsc);
+  item.querySelector('.popup__overlay').removeEventListener('click', () => closePopup(item));
 };
 // функция заркрытия popup по esc
 
 //открытие popup
 const openPopup = (item) => {
   item.classList.add('popup_open');
-  item.querySelector('.form__save-button').classList.add('form__save-button_off');
+  document.addEventListener('keydown', closeByEsc);
+  item.querySelector('.popup__overlay').addEventListener('click', () => closePopup(item));
 };
 //открытие popup
-
-
-//слушатель на закртыие попапов по нажатию esc и  клику на оверлей
-popups.forEach(function(item) {
-  item.querySelector('.popup__overlay').addEventListener('click', () => closePopup(item));
-  document.addEventListener('keydown', closeByEsc);
-});
-//слушатель на закртыие попапов по нажатию esc и  клику на оверлей
 
 
 //функция открытия popup для редакции автора
@@ -134,11 +123,9 @@ function submitGetCardElement(evt) {
   const element = getCardElement(formInputImg.value, formInputTitle.value);
   performCard(cardElements, element);
   formToAddCard.reset();
-  //evt.target.classList.add('form__save-button_off');
-  // evt.target.disabled = true;
   closePopup(popupToAddCard);
-
-
+  evt.target.querySelector('.form__save-button').classList.add('form__save-button_off');
+  evt.target.querySelector('.form__save-button').disabled = true;
 };
 //функция подтверждения
 
