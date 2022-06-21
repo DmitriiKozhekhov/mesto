@@ -1,7 +1,6 @@
 //введение переменных
-
+const popups = document.querySelectorAll('.popup');
 //переменные для функционала popup: редактирования(вызова), закрытия, добавления карт и другое
-
 const popupToAddCard = document.querySelector('.popup_to_create-card');
 const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const popupToEditName = document.querySelector('.popup_to_edit-name');
@@ -40,7 +39,6 @@ const closeByEsc = (evt) => {
 const closePopup = (item) => {
   item.classList.remove('popup_open');
   document.removeEventListener('keydown', closeByEsc);
-  item.querySelector('.popup__overlay').removeEventListener('click', () => closePopup(item));
 };
 // функция заркрытия popup по esc
 
@@ -48,10 +46,14 @@ const closePopup = (item) => {
 const openPopup = (item) => {
   item.classList.add('popup_open');
   document.addEventListener('keydown', closeByEsc);
-  item.querySelector('.popup__overlay').addEventListener('click', () => closePopup(item));
 };
 //открытие popup
 
+//закрытие по overlay
+popups.forEach(function(item) {
+  item.querySelector('.popup__overlay').addEventListener('click', () => closePopup(item));
+});
+//закрытие по overlay
 
 //функция открытия popup для редакции автора
 function openProfilePopup() {
@@ -82,8 +84,6 @@ function submitProfile(evt) {
   closePopup(popupToEditName);
 };
 //размещение
-
-
 //функция добавления заголовка, картинки карточки
 function getCardElement(image, title) {
   const wholeCard = cardTemplate.querySelector('.element').cloneNode(true);
@@ -97,7 +97,6 @@ function getCardElement(image, title) {
   return wholeCard;
 };
 //функция добавления заголовка, картинки для карточки
-
 //функция масшатабирования картинки при клике (открытие)
 function strechImage(element) {
   formImage.src = element.src;
