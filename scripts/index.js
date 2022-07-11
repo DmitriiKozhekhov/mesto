@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js"
+import {originalCards} from "./originalCards.js"
 const selectors = {
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -21,33 +22,10 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const profileNameInput = document.querySelector('.form__input_info_name');
 const profileJobInput = document.querySelector('.form__input_info_job');
-const cardElements = document.querySelector('.elements')
-const originalCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Адыгея',
-    link: 'https://club-miry.ru/wp-content/uploads/Hlinovsky_Kovalenko/2020/Adygeya/glav_2.jpg'
-  }
-];
+const cardElements = document.querySelector('.elements');
+export const popupToScrechImage = document.querySelector('.popup_to_image-strech');
+export const formImage = document.querySelector('.show__image');
+export const formImageTitle = document.querySelector('.show__image-title');
 const validatorFormToEditAuthor = new FormValidator (
   selectors,
   formToEditName
@@ -97,10 +75,6 @@ function submitAddCard(evt) {
   performCard(cardElements, handleNewCard(cardContainer));
   closePopup(popupToAddCard);
   formToAddCard.reset();
-};
-window.onload = function () {
-  const body = document.querySelector('.page');
-  body.style.display = 'flex';
 };
 validatorFormToEditAuthor.enableValidation();
 validatorFromToAddCard.enableValidation();
