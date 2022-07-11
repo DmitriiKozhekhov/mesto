@@ -1,139 +1,127 @@
-//введение переменных
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js"
+const selectors = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__save-button',
+  inactiveButtonClass: 'form__save-button_off',
+  inputErrorClass: 'form__input_ineffective',
+  errorClass: 'form__invalid-message_active'
+};
 const popups = document.querySelectorAll('.popup');
-//переменные для функционала popup: редактирования(вызова), закрытия, добавления карт и другое
 const popupToAddCard = document.querySelector('.popup_to_create-card');
-const popupCloseButtons = document.querySelectorAll('.popup__close-button');
 const popupToEditName = document.querySelector('.popup_to_edit-name');
-const popupToScrechImage = document.querySelector('.popup_to_image-strech');
 const profileEditOpenButton = document.querySelector('.profile__edit-button');
 const cardAddOpenButton = document.querySelector('.profile__add-button');
-//переменные для функционала popup: редактирования(вызова), закрытия, добавления карт и другое
-//form
 const formToAddCard = popupToAddCard.querySelector('.form');
 const formToEditName = popupToEditName.querySelector('.form');
 const formInputImg = formToAddCard.querySelector('.form__input_info_image-link');
 const formInputTitle = formToAddCard.querySelector('.form__input_info_card-name');
-const formImage = document.querySelector('.show__image');
-const formImageTitle = document.querySelector('.show__image-title');
-//form
-//ввод данных
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__job');
 const profileNameInput = document.querySelector('.form__input_info_name');
 const profileJobInput = document.querySelector('.form__input_info_job');
-//ввод данны
-//хранение шаблона
-const cardTemplate = document.querySelector('#card').content;
 const cardElements = document.querySelector('.elements')
-//хранение шаблона
-//введение переменных
-
-//объявление функций
-// функция заркрытия popup по esc
+const originalCards = [
+  {
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Адыгея',
+    link: 'https://club-miry.ru/wp-content/uploads/Hlinovsky_Kovalenko/2020/Adygeya/glav_2.jpg'
+  }
+];
+const validatorFormToEditAuthor = new FormValidator (
+  selectors,
+  formToEditName
+);
+const validatorFromToAddCard = new FormValidator (
+  selectors,
+  formToAddCard
+);
+export const openPopup = (item) => {
+  item.classList.add('popup_open');
+  document.addEventListener('keydown', closeByEsc);
+};
+const closePopup = (item) => {
+  item.classList.remove('popup_open');
+  document.removeEventListener('keydown', closeByEsc);
+};
 const closeByEsc = (evt) => {
   if (evt.key === 'Escape') {
     const popupOpenedState = document.querySelector('.popup_open');
     closePopup(popupOpenedState);
   };
 };
-const closePopup = (item) => {
-  item.classList.remove('popup_open');
-  document.removeEventListener('keydown', closeByEsc);
-};
-// функция заркрытия popup по esc
-
-//открытие popup
-const openPopup = (item) => {
-  item.classList.add('popup_open');
-  document.addEventListener('keydown', closeByEsc);
-};
-//открытие popup
-
-//закрытие по overlay
-popups.forEach(function(item) {
-  item.querySelector('.popup__overlay').addEventListener('click', () => closePopup(item));
-});
-//закрытие по overlay
-
-//функция открытия popup для редакции автора
 function openProfilePopup() {
   profileNameInput.value = profileName.textContent;
   profileJobInput.value = profileJob.textContent;
+  validatorFormToEditAuthor.resetValidation();
   openPopup(popupToEditName);
 };
-//функция открытия popup для редакции автора
-
-//функция like
-//handleLikeClick.
-function handleLikeClick(evt) {
-  evt.target.classList.toggle('element__like-button_active');
-};
-//функция like
-
-//функция удаления карточки
-function removeCard(evt) {
-  evt.target.closest('.element').remove();
-};
-//функция удаления карточки
-
-//размещение
 function submitProfile(evt) {
   evt.preventDefault();
   profileName.textContent = profileNameInput.value;
   profileJob.textContent = profileJobInput.value;
   closePopup(popupToEditName);
 };
-//размещение
-//функция добавления заголовка, картинки карточки
-function getCardElement(image, title) {
-  const wholeCard = cardTemplate.querySelector('.element').cloneNode(true);
-  const imageOfCard = wholeCard.querySelector('.element__image')
-  imageOfCard.src = image;
-  imageOfCard.alt = title;
-  wholeCard.querySelector('.element__title').textContent = title;
-  wholeCard.querySelector('.element__like-button').addEventListener('click', handleLikeClick);
-  wholeCard.querySelector('.element__remove').addEventListener('click', removeCard);
-  imageOfCard.addEventListener('click', () => strechImage(imageOfCard));
-  return wholeCard;
-};
-//функция добавления заголовка, картинки для карточки
-//функция масшатабирования картинки при клике (открытие)
-function strechImage(element) {
-  formImage.src = element.src;
-  formImage.alt = element.alt;
-  formImageTitle.textContent = element.alt;
-  openPopup(popupToScrechImage);
-};
-//функция масшатабирования картинки при клике (открытие)
 function performCard (elementPlace, element) {
   elementPlace.prepend(element);
 };
-//стрелочная функция добавление массива карточек
-originalCards.forEach((item) => {
-  const element = getCardElement(item.link, item.name);
-  performCard (cardElements, element);
-});
-//стрелочная функция добавление массива карточек
-
-
-//функция подтверждения
-function submitGetCardElement(evt) {
-  evt.preventDefault();
-  const element = getCardElement(formInputImg.value, formInputTitle.value);
-  performCard(cardElements, element);
-  formToAddCard.reset();
-  closePopup(popupToAddCard);
-  evt.target.querySelector('.form__save-button').classList.add('form__save-button_off');
-  evt.target.querySelector('.form__save-button').disabled = true;
+function handleNewCard(card) {
+  const newCard = new Card(card, "#card").generateCard();
+  return newCard;
 };
-//функция подтверждения
-
-//слушатели событий
+function submitAddCard(evt) {
+  evt.preventDefault();
+  const cardContainer = [];
+  cardContainer.link = formInputImg.value;
+  cardContainer.name = formInputTitle.value;
+  performCard(cardElements, handleNewCard(cardContainer));
+  closePopup(popupToAddCard);
+  formToAddCard.reset();
+};
+window.onload = function () {
+  const body = document.querySelector('.page');
+  body.style.display = 'flex';
+};
+validatorFormToEditAuthor.enableValidation();
+validatorFromToAddCard.enableValidation();
 profileEditOpenButton.addEventListener('click', openProfilePopup);
-cardAddOpenButton.addEventListener('click', () =>  openPopup(popupToAddCard));
-popupCloseButtons.forEach((item) => {
-  item.addEventListener('click', () => closePopup(item.closest('.popup')));
+cardAddOpenButton.addEventListener('click', () =>  {
+  formToAddCard.reset();
+  validatorFromToAddCard.resetValidation();
+  openPopup(popupToAddCard);
 });
 formToEditName.addEventListener('submit', submitProfile);
-formToAddCard.addEventListener('submit', submitGetCardElement);
-//слушатели событий
+formToAddCard.addEventListener('submit', submitAddCard);
+popups.forEach((item) => {
+  item.addEventListener("mousedown", function (evt) {
+    if (
+      evt.target.classList.contains("popup_open") ||
+      evt.target.classList.contains("popup__close-button")
+    ) {
+      closePopup(item);
+    }
+  });
+});
+originalCards.forEach((item) => {
+  performCard (cardElements, handleNewCard(item));
+});
