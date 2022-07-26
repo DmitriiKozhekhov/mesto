@@ -1,27 +1,20 @@
-import { openPopup, popupToScrechImage, formImage, formImageTitle } from "./index.js";
 export default class Card {
-  constructor(data, cardSelector) {
+  constructor(data, cardSelector, handleCardClick) {
     this._title = data.name;
     this._imageLink = data.link;
     this._cardSelector = cardSelector;
-}
+    this._element = this._getTemplate();
+    this._handleCardClick = handleCardClick;
+  }
 _getTemplate() {
-  return document
-    .querySelector(this._cardSelector)
-    .content.querySelector(".element")
-    .cloneNode(true);
+  const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
+  return cardElement;
 }
 _handleLikeClick(evt) {
   evt.target.classList.toggle('element__like-button_active');
 }
 _removeCard(){
   this._element.remove();
-}
-_strechImage(evt) {
-  formImage.src = evt.target.src;;
-  formImage.alt = evt.target.alt;
-  formImageTitle.textContent = evt.target.alt;
-  openPopup(popupToScrechImage);
 }
 _setEventListener() {
   this._image = this._element.querySelector(".element__image");
@@ -31,10 +24,10 @@ _setEventListener() {
   this._element
     .querySelector(".element__remove")
     .addEventListener("click", () => this._removeCard());
-  this._image.addEventListener("click", this._strechImage);
+  this._image.addEventListener("click", this._handleCardClick);
 }
 generateCard() {
-  this._element = this._getTemplate();
+  //this._element = this._getTemplate();
   this._setEventListener();
   this._image.src = this._imageLink;
   this._image.alt = this._title;
