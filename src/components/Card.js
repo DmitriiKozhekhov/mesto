@@ -15,6 +15,7 @@ _handleLikeClick(evt) {
 }
 _removeCard(){
   this._element.remove();
+  this._element = null;
 }
 _setEventListener() {
   this._image = this._element.querySelector(".element__image");
