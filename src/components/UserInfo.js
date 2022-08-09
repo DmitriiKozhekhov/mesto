@@ -1,5 +1,5 @@
 export default class UserInfo {
-  constructor({ nameAuthor, infoAuthor }) {
+  constructor(nameAuthor, infoAuthor) {
     this._nameAuthor = nameAuthor;
     this._infoAuthor = infoAuthor;
   }
@@ -10,8 +10,8 @@ export default class UserInfo {
     };
     return this._userInfoValues;
   }
-  setUserInfo(newData) {
-    this._nameAuthor.textContent = newData.nameAuthor;
-    this._infoAuthor.textContent = newData.infoAuthor;
+  setUserInfo(nameAuthor, infoAuthor) {
+    this._nameAuthor.textContent = nameAuthor;
+    this._infoAuthor.textContent = infoAuthor;
   }
 }

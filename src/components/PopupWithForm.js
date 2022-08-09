@@ -6,10 +6,6 @@ export default class PopupWithForm extends Popup {
     this._inputsList = this._formContainer.querySelectorAll('.form__input');
     this._submitForm = submitForm;
   }
-
-  // const formInputImg = formToAddCard.querySelector('.form__input_info_image-link');
-  // const formInputTitle = formToAddCard.querySelector('.form__input_info_card-name');
-
   _getInputValues() {
     this._formValues = {};
     this._inputsList.forEach((input) => {
@@ -26,7 +22,7 @@ export default class PopupWithForm extends Popup {
     this._formContainer.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitForm(this._getInputValues());
-      this.close();
+      // this.close();
     });
   }
 }
