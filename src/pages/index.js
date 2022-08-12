@@ -47,7 +47,8 @@ const validatorToEditAvatar = new FormValidator (
 );
 const dataInfo = new UserInfo(
   profileName,
-  profileJob
+  profileJob,
+  profileAvatar
 );
 const popupProfile = new PopupWithForm(popupToEditName,
   (data) => {
@@ -55,11 +56,13 @@ const popupProfile = new PopupWithForm(popupToEditName,
     api.editProfileData(data.nameAuthor, data.infoAuthor)
       .then((res) => {
         dataInfo.setUserInfo(res.name, res.about);
-        editSubmit.textContent = 'Сохранить';
         popupProfile.close();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        editSubmit.textContent = 'Сохранить';
       });
 });
 const popupForEditAvatar = new PopupWithForm(
@@ -68,25 +71,25 @@ const popupForEditAvatar = new PopupWithForm(
     editAvatar.textContent = 'Сохранение...';
     api.editProfileAvatar(elem.link)
       .then((res) => {
-        profileAvatar.src = res.avatar;
-        editAvatar.textContent = 'Сохранить';
+        dataInfo.editAvatar(res);
         popupForEditAvatar.close();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        editAvatar.textContent = 'Сохранить';
       });
   }
 );
 popupForEditAvatar.setEventListeners();
-
 avatarButton.addEventListener('click', () => {
   popupForEditAvatar.open();
 });
 
 const cards = new Section(
 (item) => {
-      const cardItem = handleNewCard(item);
-      cards.addItem(cardItem);
+      cards.addItem(handleNewCard(item).generateCard());
     },
   cardElements
 );
@@ -94,65 +97,65 @@ const popupCard = new PopupWithForm(popupToAddCard, (data) => {
     addSubmit.textContent = 'Создание...';
     api.addCard(data)
       .then((res) => {
-        cards.addItem(handleNewCard(res));
-       // cards.renderItems([res]);
-        addSubmit.textContent = 'Создать';
+        cards.addItem(handleNewCard(res).generateCard());
         popupCard.close();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        addSubmit.textContent = 'Создать';
       });
 });
 const popupStrechImage = new PopupWithImage(popupToScrechImage);
-function handleCardClick(evt) {
-  popupStrechImage.open(evt.target);
-}
+// function handleCardClick(evt) {
+//   popupStrechImage.open(evt.target);
+// }
 const popupRemoveCard = new PopupWithVerifier(
   popupToVerify,
   (elem, deletingCard) => {
     verifySubmit.textContent = 'Удаление...';
     api.removeCard(elem)
       .then(() => {
-        popupRemoveCard.setEventListeners(elem);
-        verifySubmit.textContent = 'Да';
-        deletingCard.remove();
-        deletingCard = null;
+        handleNewCard(elem).removeCard(deletingCard);
         popupRemoveCard.close();
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        verifySubmit.textContent = 'Да';
       });
   }
 );
-function handleRemoveCard (item, deletingCard) {
-  popupRemoveCard.open(deletingCard);
-  popupRemoveCard.setEventListeners(item);
-};
+popupRemoveCard.setEventListeners();
+
+// function handleRemoveCard (item, deletingCard) {
+//   popupRemoveCard.open(deletingCard);
+//   popupRemoveCard.setEventListeners(item);
+// };
 function handleNewCard(card) {
-  const newCard = new Card(card, "#card",handleCardClick, handleRemoveCard, {
-    handleLike: (button) => {
-      if(button.classList.contains('element__like-button_active')) {
-        api.removeLike(card)
-          .then((res) => {
-            !newCard.counterOfLikes(res.likes.length);
-            button.classList.remove('element__like-button_active');
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      } else {
-        api.setLike(card)
-          .then((res) => {
-            !newCard.counterOfLikes(res.likes.length);
-            button.classList.add('element__like-button_active');
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    }
-  });
-  return newCard.generateCard();
+  const newCard = new Card(card, "#card",popupStrechImage, popupRemoveCard, (card) => {
+    api.setLike(card)
+      .then((res) => {
+        !newCard.counterOfLikes(res.likes.length);
+        newCard.setLike();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+  (card) => {
+    api.removeLike(card)
+      .then((res) => {
+        !newCard.counterOfLikes(res.likes.length);
+        newCard.removeLike();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },dataInfo._id);
+  return newCard;
 };
 validatorToEditAuthor.enableValidation();
 validatorToAddCard.enableValidation();
@@ -174,8 +177,9 @@ cardAddOpenButton.addEventListener('click', () => {
 Promise.all([user, cardsData])
   .then((values) => {
     const userData = values[0];
-    dataInfo.setUserInfo(userData.name, userData.about)
-    profileAvatar.src = userData.avatar;
+    dataInfo.setUserInfo(userData.name, userData.about);
+    dataInfo._id = userData._id;
+    dataInfo.editAvatar(userData);
     const cardsArray = values[1];
     cards.renderItems(cardsArray);
   })

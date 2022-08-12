@@ -7,8 +7,8 @@ export default class Section {
     this._container.prepend(element);
   }
   renderItems(array) {
-   return array.reverse().forEach((item) => {
-      this._renderer(item);
+    array.reverse().forEach((item) => {
+    this._renderer(item);
     });
   }
 }

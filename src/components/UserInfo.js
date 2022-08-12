@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(nameAuthor, infoAuthor) {
+  constructor(nameAuthor, infoAuthor, avatarAuthor) {
     this._nameAuthor = nameAuthor;
     this._infoAuthor = infoAuthor;
+    this._avatarAuthor = avatarAuthor;
   }
   getUserInfo() {
     this._userInfoValues = {
@@ -13,5 +14,8 @@ export default class UserInfo {
   setUserInfo(nameAuthor, infoAuthor) {
     this._nameAuthor.textContent = nameAuthor;
     this._infoAuthor.textContent = infoAuthor;
+  }
+  editAvatar(elem) {
+    this._avatarAuthor.src = elem.avatar;
   }
 }

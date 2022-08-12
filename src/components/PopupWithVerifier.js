@@ -5,16 +5,20 @@ export default class PopupWithVerifier extends Popup {
     this._formContainer = document.querySelector('.popup_to_verify').querySelector('.form');
     this._submitForm = submitForm;
   }
-  open(deletingCard) {
+  // _submitTest(evt) {
+  //   evt.preventDefault();
+  //   this._submitForm(this._card, this._deletingCard);
+  // }
+  open(card, deletingCard) {
     super.open();
+    this._card = card;
     this._deletingCard = deletingCard;
   }
-  setEventListeners(elem) {
+  setEventListeners() {
     super.setEventListeners();
     this._formContainer.addEventListener('submit', (evt) => {
       evt.preventDefault();
-      this._submitForm(elem, this._deletingCard);
-      console.log(elem);
+      this._submitForm(this._card, this._deletingCard);
     });
   }
 }
