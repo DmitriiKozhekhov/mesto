@@ -85,6 +85,7 @@ const popupForEditAvatar = new PopupWithForm(
 popupForEditAvatar.setEventListeners();
 avatarButton.addEventListener('click', () => {
   popupForEditAvatar.open();
+  validatorToEditAvatar.toggleButtonState();
 });
 
 const cards = new Section(
@@ -154,7 +155,7 @@ function handleNewCard(card) {
       .catch((err) => {
         console.log(err);
       });
-  },dataInfo._id);
+  },dataInfo.id);
   return newCard;
 };
 validatorToEditAuthor.enableValidation();
@@ -178,7 +179,7 @@ Promise.all([user, cardsData])
   .then((values) => {
     const userData = values[0];
     dataInfo.setUserInfo(userData.name, userData.about);
-    dataInfo._id = userData._id;
+    dataInfo.id = userData._id;
     dataInfo.editAvatar(userData);
     const cardsArray = values[1];
     cards.renderItems(cardsArray);

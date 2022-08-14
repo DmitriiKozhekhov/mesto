@@ -43,7 +43,7 @@ _activeButton() {
   );
   this._buttonElement.disabled = false;
 }
-_toggleButtonState() {
+toggleButtonState() {
   if (this._hasInvalidInput()) {
     this._disabledButton();
   } else {
@@ -51,7 +51,7 @@ _toggleButtonState() {
   }
 }
 resetValidation() {
-  this._toggleButtonState();
+  this.toggleButtonState();
 
   this._inputList.forEach((item) => {
     this._hideInputError(item);
@@ -61,7 +61,7 @@ _setEventListeners() {
   this._inputList.forEach((input) => {
     input.addEventListener("input", () => {
       this._hasInputs(input);
-      this._toggleButtonState();
+      this.toggleButtonState();
     });
   });
 }
